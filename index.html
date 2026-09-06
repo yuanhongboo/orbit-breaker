@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0c1211" />
+    <meta name="description" content="星环突围 ORBIT BREAKER：三分钟太空生存街机。自动射击、自由升级、击破母舰。无需下载，电脑与手机即开即玩。" />
+    <meta property="og:title" content="星环突围 · ORBIT BREAKER" />
+    <meta property="og:description" content="一艘飞船，三分钟，整个星环。免费的太空生存街机。" />
+    <meta property="og:type" content="website" />
+    <title>星环突围 · ORBIT BREAKER</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-mode="home">
+    <canvas id="universe" aria-label="星环突围游戏画面" tabindex="0"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="星环突围首页">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="20" rx="18" ry="7" transform="rotate(-35 20 20)"/><circle cx="20" cy="20" r="11"/><path d="M17 25 22 12 25 20Z"/></svg>
+        <span>ORBIT<span class="brand-light"> BREAKER</span><small>星 环 突 围</small></span>
+      </a>
+      <span class="edition"><i></i> 独立街机 &nbsp; / &nbsp; VOL. 01</span>
+      <nav aria-label="游戏菜单">
+        <button class="text-button home-nav" id="how-to">玩法指南 <span>↗</span></button>
+        <button class="text-button home-nav" id="records-button">飞行记录</button>
+        <button class="icon-button" id="sound-button" aria-label="关闭音效" aria-pressed="true" title="关闭音效">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg>
+        </button>
+        <button class="icon-button" id="pause-button" aria-label="暂停游戏" title="暂停 · Esc" hidden>Ⅱ</button>
+      </nav>
+    </header>
+
+    <main id="home" class="home">
+      <section class="hero-copy" aria-labelledby="hero-title">
+        <p class="eyebrow"><span class="tiny-cross">✳</span> 小小飞船。大大宇宙。</p>
+        <h1 id="hero-title">ORBIT<br /><span>BREAKER<span class="title-dot">.</span></span></h1>
+        <div class="chinese-title"><span>星环突围</span><span class="title-rule"></span><span class="mono">SURVIVE THE ORBIT</span></div>
+        <p class="hero-description">在星环崩塌之前，杀出你的轨道。<br />收集能量，自由进化，迎战最后的母舰。</p>
+        <div class="launch-actions">
+          <button class="primary-button launch-button" data-start><span>开始突围<small>LET’S MAKE SOME SPACE</small></span><span class="launch-arrow">↗</span></button>
+          <span class="launch-note"><span class="live-dot"></span> 即开即玩<br /><span>免费 · 无需下载</span></span>
+        </div>
+        <div class="key-hints"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动</span><span><kbd>SPACE</kbd> 冲刺</span><span class="auto-hint">⊹ 自动开火</span></div>
+        <p class="touch-hint">左侧摇杆移动 · 右侧按钮冲刺 · 自动开火</p>
+      </section>
+
+      <aside class="mission-card">
+        <div class="mission-top"><span class="mono">YOUR MISSION</span><span>↗</span></div>
+        <div class="mission-number">03<span>:00</span><span class="mission-unit">MIN</span></div>
+        <p>三分钟内，击破母舰。</p>
+        <div class="mission-rule"></div>
+        <div class="mission-bottom"><span>本机最高纪录</span><strong id="best-score">— — —</strong></div>
+      </aside>
+
+      <section class="feature-strip" aria-label="游戏特色">
+        <div class="feature"><span class="feature-number">01 /</span><span class="feature-symbol">↯</span><div><h2>走位，就是反击。</h2><p>自动锁敌开火，专注每一次闪避。</p></div></div>
+        <div class="feature"><span class="feature-number">02 /</span><span class="feature-symbol">✳</span><div><h2>每一局，新的可能。</h2><p>八种升级，组合你的专属火力。</p></div></div>
+        <div class="feature"><span class="feature-number">03 /</span><span class="feature-symbol">◎</span><div><h2>坚持到最后一秒。</h2><p>穿过弹幕，让母舰化为星尘。</p></div></div>
+      </section>
+      <footer class="home-footer"><span>A LITTLE GAME. A BIG UNIVERSE.</span><span><span class="footer-cross">+</span> 为下一次「再来一局」而造 <span class="version">V1.0</span></span></footer>
+    </main>
+
+    <section id="hud" class="hud" aria-label="飞行仪表" hidden>
+      <div class="hud-top">
+        <div class="hud-left"><span class="hud-label">SCORE / 得分</span><strong id="score">000000</strong><span id="combo" class="combo">锁定目标，保持移动</span></div>
+        <div class="hud-center"><span class="hud-label" id="mission-status">母舰将在 02:20 抵达</span><strong id="timer">03:00</strong><span class="timer-track"><span id="time-progress"></span></span></div>
+        <div class="hud-right"><div class="shield-label"><span class="hud-label">SHIELD / 护盾</span><span id="health-text">100 / 100</span></div><div class="shield-track"><span id="health-bar"></span></div><span id="kills" class="hud-label">0 击破</span></div>
+      </div>
+      <div id="boss-hud" class="boss-hud" hidden><div><span>⚠ 毁灭者母舰</span><span id="boss-percent">100%</span></div><span class="boss-track"><span id="boss-bar"></span></span></div>
+      <div class="hud-bottom"><div class="loadout"><span class="hud-label">BUILD / 改装</span><div id="loadout-icons"><span class="empty-loadout">收集绿色能量 → 三选一升级</span></div></div><div class="dash-control"><button id="dash-button" aria-label="冲刺"><span>»</span><span id="dash-label">冲刺就绪</span><kbd>SPACE</kbd></button></div></div>
+      <div class="xp-row"><span id="level">LV. 01</span><div class="xp-track"><span id="xp-bar"></span></div><span id="xp-label">能量 0 / 28</span></div>
+    </section>
+
+    <div id="toast" class="toast" role="status" hidden></div>
+    <div id="touch-controls" class="touch-controls" hidden><div id="joystick" class="joystick" aria-label="拖动摇杆移动"><span class="joystick-ring"></span><span id="joystick-knob" class="joystick-knob"></span><span class="joystick-label">MOVE</span></div><button id="touch-dash" class="touch-dash" aria-label="冲刺">»<small>DASH</small></button></div>
+
+    <dialog id="help-dialog" class="panel-dialog">
+      <button class="dialog-close" data-close aria-label="关闭玩法指南">×</button>
+      <p class="eyebrow">FLIGHT MANUAL / 01</p><h2>第一次出航？</h2><p class="dialog-intro">你的飞船会自动攻击最近的敌人。你只管移动。</p>
+      <ol class="manual-list"><li><span>01</span><div><h3>保持移动，穿过空隙。</h3><p>WASD 或方向键移动。手机拖动左下角摇杆。</p></div></li><li><span>02</span><div><h3>关键时刻，冲刺脱险。</h3><p>空格或冲刺按钮：向移动方向快速突进，短暂无敌。冷却约 3 秒。</p></div></li><li><span>03</span><div><h3>收集能量，改造飞船。</h3><p>靠近绿色晶体获取经验，升级时选择一项改装。珊瑚色晶体还会修复护盾。</p></div></li><li><span>04</span><div><h3>在三分钟内击破母舰。</h3><p>母舰在 02:20 抵达。顺着屏幕边缘的箭头接近它，边移动边输出。</p></div></li></ol>
+      <p class="manual-note">Esc / P 暂停 · 升级时按 1 / 2 / 3 选择 · 切换页面会自动暂停</p>
+      <button class="primary-button wide" data-start>准备好了，出发 ↗</button>
+    </dialog>
+
+    <dialog id="records-dialog" class="panel-dialog">
+      <button class="dialog-close" data-close aria-label="关闭飞行记录">×</button>
+      <p class="eyebrow">FLIGHT LOG</p><h2>每次出航，都算数。</h2><p class="dialog-intro">记录只保存在当前浏览器。</p>
+      <div class="record-stats"><div><strong id="record-runs">0</strong><span>完成飞行</span></div><div><strong id="record-wins">0</strong><span>成功突围</span></div><div><strong id="record-kills">0</strong><span>累计击破</span></div></div>
+      <div id="record-list"></div><button class="primary-button wide" data-start>开启下一次飞行 ↗</button>
+    </dialog>
+
+    <dialog id="upgrade-dialog" class="upgrade-dialog">
+      <p class="eyebrow">SYSTEM UPGRADE / <span id="upgrade-level">LEVEL 02</span></p><h2>选择你的进化。</h2><p class="dialog-intro">战场已暂停。三选一，让下一轮火力更猛烈。</p>
+      <div id="upgrade-options" class="upgrade-options"></div><p class="upgrade-tip">点击卡片，或按 <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> 选择</p>
+    </dialog>
+
+    <dialog id="pause-dialog" class="panel-dialog compact-dialog"><p class="eyebrow">TAKE A BREATH</p><h2>宇宙可以等一会儿。</h2><p class="dialog-intro">游戏已暂停。准备好后，继续你的突围。</p><button class="primary-button wide" id="resume-button">继续飞行 ↗</button><button class="secondary-button wide" id="quit-button">结束本局，返回基地</button></dialog>
+
+    <dialog id="result-dialog" class="panel-dialog result-dialog">
+      <p id="result-eyebrow" class="eyebrow">FLIGHT COMPLETE</p><div class="result-emblem" id="result-emblem">↗</div><h2 id="result-title">星环记住了你。</h2><p id="result-description" class="dialog-intro"></p>
+      <div class="result-score"><span>本局得分</span><strong id="result-score">000000</strong><span id="new-record" hidden>✳ NEW PERSONAL BEST</span></div>
+      <div class="record-stats result-stats"><div><strong id="result-time">00:00</strong><span>生存时间</span></div><div><strong id="result-kills">0</strong><span>击破敌舰</span></div><div><strong id="result-level">1</strong><span>改装等级</span></div></div>
+      <button class="primary-button wide" data-start>再来一局 ↗</button><div class="result-actions"><button class="text-button" id="share-button">复制战绩与链接 ↗</button><button class="text-button" id="home-button">返回基地</button></div><p class="share-status" id="share-status" role="status"></p>
+    </dialog>
+    <noscript><div class="fatal-error">请启用 JavaScript 后再开始游戏。</div></noscript>
+    <div class="fatal-error" id="fatal-error" role="alert" hidden></div>
+    <script type="module" src="./src/main.mjs"></script>
+  </body>
+</html>
