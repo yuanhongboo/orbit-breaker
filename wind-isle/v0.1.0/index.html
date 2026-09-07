@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#3f5950" />
+    <meta
+      name="description"
+      content="走进风眠谷。搬运、投掷、探索，让风、水与火回应你的行动。一个第三人称物理探索样片。"
+    />
+    <title>风屿 · WIND ISLE</title>
+    <link rel="icon" href="./assets/favicon-D4xh55f9.svg" type="image/svg+xml" />
+    <script type="module" crossorigin src="./assets/index-ypv1mh3Z.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/physics-ByaTtX8I.js">
+    <link rel="modulepreload" crossorigin href="./assets/graphics-Bq0UnRGr.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-DlbvfGtX.css">
+  </head>
+  <body data-state="loading">
+    <canvas id="world" aria-label="风屿三维探索场景"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <section id="arrival" aria-labelledby="title">
+      <div class="arrival-top">
+        <span class="sigil">◇</span><span>一座岛，一场未完成的旅行。</span
+        ><span class="edition">探索样片 · 01</span>
+      </div>
+      <div class="arrival-copy">
+        <p class="eyebrow">FOLLOW THE WIND</p>
+        <h1 id="title">风 屿</h1>
+        <p class="english-title">W I N D &nbsp; I S L E</p>
+        <div class="hairline"></div>
+        <p class="description">
+          风会拂过草地。木头会浮出水面。<br />而一扇古老的门，正在等你推开。
+        </p>
+        <button id="start" class="primary" disabled>
+          <span id="start-label">正在唤醒岛屿…</span><span aria-hidden="true">↗</span>
+        </button>
+        <p class="sound-hint">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 14v-3a8 8 0 0 1 16 0v3M4 13h3v7H4zM17 13h3v7h-3z" /></svg
+          >戴上耳机，听见这个世界。
+        </p>
+      </div>
+      <div class="arrival-bottom">
+        <span>自由探索 · 物理互动 · 风与水的声音</span><span>WIND ISLE / 0.1</span>
+      </div>
+    </section>
+    <main id="hud" hidden>
+      <div class="top-row">
+        <div class="location">
+          <span class="location-mark" aria-hidden="true">◇</span>
+          <div><strong>风眠谷</strong><span>湖畔遗迹</span></div>
+        </div>
+        <div class="compass" aria-label="指南针">
+          <span>W</span><i></i><b id="heading">N</b><i></i><span>E</span><em>⌃</em>
+        </div>
+        <div class="top-actions">
+          <button id="sound" class="icon-button" aria-label="关闭声音" title="声音">
+            <svg id="sound-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9h4l5-4v14l-5-4H4zM17 8a7 7 0 0 1 0 8M20 5a11 11 0 0 1 0 14" />
+            </svg>
+          </button>
+          <button id="pause" class="icon-button" aria-label="暂停与操作说明" title="暂停">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" /></svg>
+          </button>
+        </div>
+      </div>
+      <div class="quest">
+        <span class="quest-diamond">◇</span>
+        <div>
+          <span class="eyebrow">遗迹的回声</span
+          ><strong id="objective">让石门前的机关保持下沉</strong>
+          <p id="objective-hint">试试把路边的木箱放到石盘上。</p>
+        </div>
+      </div>
+      <div class="stamina" aria-label="体力">
+        <span>体力</span>
+        <div><i id="stamina-fill"></i></div>
+        <small id="motion-state">行走</small>
+      </div>
+      <div id="interaction" hidden>
+        <span id="object-name"></span><span id="object-detail"></span>
+        <div>
+          <kbd>E</kbd><b id="interaction-action">牵引</b
+          ><span id="throw-hint" hidden><kbd>F</kbd>投掷</span>
+        </div>
+      </div>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <div class="desktop-controls">
+        <span><kbd>W A S D</kbd>移动</span><span><kbd>拖动鼠标</kbd>环顾</span
+        ><span><kbd>Shift</kbd>奔跑</span><span><kbd>空格</kbd>跳跃 / 展翼</span
+        ><span><kbd>E</kbd>牵引 / 放下</span><span><kbd>F</kbd>投掷</span>
+      </div>
+      <div class="touch-controls">
+        <div id="joystick" aria-label="移动摇杆" role="application">
+          <span></span><i id="stick"></i>
+        </div>
+        <div class="touch-actions">
+          <button id="touch-interact" aria-label="牵引或放下">牵引</button
+          ><button id="touch-throw" aria-label="投掷物体" hidden>投掷</button
+          ><button id="touch-jump" aria-label="跳跃或展开滑翔翼">跃</button>
+        </div>
+        <button id="recenter" class="icon-button" aria-label="镜头回正">⌖</button>
+      </div>
+      <span class="prototype-label">WIND ISLE · 探索样片</span>
+    </main>
+    <dialog id="pause-dialog">
+      <span class="eyebrow">TAKE A BREATH</span>
+      <h2>风还在这里。</h2>
+      <p>回到草地，继续你的探索。</p>
+      <div class="help-grid">
+        <div>
+          <strong>走进世界</strong>
+          <p>
+            WASD 移动 · Shift 奔跑<br />鼠标拖动环顾 · 滚轮调镜头<br />V 自动行走 / 停止 · R
+            镜头回正<br />空格跳跃，空中再按展开滑翔翼
+          </p>
+        </div>
+        <div>
+          <strong>试着改变它</strong>
+          <p>E 牵引 / 放下 · F 投掷<br />木箱可以压住机关<br />营火能点燃木头，湖水会熄灭它</p>
+        </div>
+      </div>
+      <p>在营火上方展开滑翔翼，试试乘上热气流。</p>
+      <p class="mobile-help">
+        左手摇杆移动，右手滑动环顾。点击「跃」跳起，空中再点一次展开滑翔翼。
+      </p>
+      <div class="discoveries" id="discoveries"></div>
+      <button id="resume" class="primary">继续探索 <span>↗</span></button>
+      <div class="secondary-actions">
+        <button id="return-spawn">回到起点</button><button id="reset">重置整个场景</button>
+      </div>
+      <small>本样片不保存场景；刷新或重置会恢复所有物体。</small>
+    </dialog>
+    <div id="fatal" hidden role="alert">
+      <h2>岛屿还没能打开</h2>
+      <p id="fatal-message"></p>
+      <button onclick="location.reload()">重新载入</button>
+    </div>
+    <details id="diagnostics" hidden>
+      <summary>运行数据</summary>
+      <pre id="diagnostics-data"></pre>
+    </details>
+  </body>
+</html>

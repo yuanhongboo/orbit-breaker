@@ -1,0 +1,17 @@
+WIND ISLE / 风屿 — exploration prototype 0.1.0
+
+Original procedural terrain, character, props, vegetation, animation, shaders,
+interface and synthesized audio created for this prototype.
+No Nintendo characters, maps, music, textures or other game assets are used.
+
+Three.js 0.185.1 — MIT License, Copyright Three.js authors.
+Includes RoundedBoxGeometry from the Three.js examples.
+See licenses/THREE-MIT.txt.
+
+Rapier JavaScript compatibility package 0.12.0 — Apache License 2.0.
+Physics engine by Dimforge and contributors, https://rapier.rs/.
+See licenses/RAPIER-APACHE-2.0.txt.
+
+The rigid-body engine handles collision and dynamics. Buoyancy, wetness,
+combustion and thermal lift are simplified game models, not engineering
+or scientific simulation. The terrain, scenery and character are a prototype.
