@@ -1,0 +1,475 @@
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+.save-note {
+  font-size: 12px;
+  color: #91a385;
+  line-height: 1.5;
+  margin: 13px 0 0;
+}
+.launch-button small {
+  font-size: 11px;
+  letter-spacing: 0.025em;
+}
+.launch-note {
+  line-height: 1.6;
+}
+.launch-note .download-note {
+  display: block;
+  font-size: 11px;
+  color: #9eaf91;
+}
+.launch-note #new-run-button {
+  font-size: 13px;
+  color: var(--lime);
+  min-height: 44px;
+  padding: 7px 0;
+}
+.icon-button {
+  width: 44px;
+  height: 44px;
+}
+.text-button {
+  min-height: 40px;
+}
+.topbar nav {
+  gap: 18px;
+}
+.touch-hint {
+  font-size: 12px !important;
+  line-height: 1.6;
+}
+body[data-mode='game'] #universe {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+body[data-mode='game'] .topbar {
+  height: calc(70px + var(--safe-top));
+  padding-top: var(--safe-top);
+  padding-left: max(20px, var(--safe-left));
+  padding-right: max(20px, var(--safe-right));
+}
+.hud-top {
+  top: calc(90px + var(--safe-top));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 18px;
+}
+.hud-left,
+.hud-center,
+.hud-right {
+  min-width: 0;
+}
+.hud-center {
+  position: static;
+  transform: none;
+  min-width: 130px;
+  gap: 8px;
+}
+.hud-label {
+  font: 12px var(--font);
+  letter-spacing: 0.01em;
+}
+.hud-left > strong {
+  font-size: 30px;
+}
+.hud-center > strong {
+  font-size: 36px;
+}
+.combo {
+  font-size: 12px;
+  min-height: 18px;
+}
+.shield-label > span:last-child {
+  font: 14px var(--mono);
+}
+.shield-track {
+  height: 8px;
+}
+.hud-right {
+  justify-self: end;
+}
+.boss-hud {
+  top: calc(204px + var(--safe-top));
+}
+.boss-hud > div {
+  font-size: 13px;
+}
+.boss-track {
+  height: 6px;
+}
+.hud-bottom {
+  bottom: calc(66px + var(--safe-bottom));
+}
+.empty-loadout {
+  font-size: 12px;
+}
+.loadout-icon {
+  width: 36px;
+  height: 36px;
+}
+.loadout-icon small {
+  font-size: 12px;
+  bottom: -3px;
+}
+.xp-row {
+  bottom: calc(20px + var(--safe-bottom));
+  font-size: 12px;
+  min-height: 18px;
+}
+.xp-track {
+  height: 5px;
+}
+.dash-control button > span:nth-child(2) {
+  font-size: 13px;
+}
+.toast {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: calc(100vw - 36px);
+  padding: 12px 18px;
+}
+.joystick {
+  touch-action: none;
+  transition: opacity 0.15s;
+}
+.joystick-label {
+  font: 12px var(--font);
+  bottom: -24px;
+  letter-spacing: 0;
+}
+.joystick.steering .joystick-label {
+  display: none;
+}
+.joystick-knob {
+  width: 46px;
+  height: 46px;
+}
+.touch-dash {
+  width: 72px;
+  height: 72px;
+  bottom: calc(138px + var(--safe-bottom));
+  right: max(24px, var(--safe-right));
+  font-size: 32px;
+}
+.touch-dash small {
+  font: 13px var(--font);
+  min-height: 18px;
+}
+.gesture-hint {
+  font-size: 12px;
+}
+.manual-list p,
+.manual-note,
+.dialog-intro {
+  font-size: 12px;
+}
+.upgrade-card p {
+  font-size: 12px;
+}
+.upgrade-card .upgrade-label {
+  font-size: 11px;
+}
+.upgrade-tip {
+  font-size: 12px;
+}
+.record-stats span,
+.result-score > span:first-child,
+.share-status {
+  font-size: 12px;
+}
+.secondary-button {
+  font-size: 13px;
+}
+@media (max-width: 760px) {
+  .topbar {
+    height: calc(80px + var(--safe-top));
+    padding-top: var(--safe-top);
+    padding-left: max(20px, var(--safe-left));
+    padding-right: max(20px, var(--safe-right));
+  }
+  .topbar nav {
+    gap: 10px;
+  }
+  .topbar .text-button {
+    font-size: 11px;
+    min-height: 44px;
+  }
+  .brand {
+    font-size: 11px;
+    gap: 7px;
+  }
+  .brand small {
+    font-size: 9px;
+  }
+  .brand svg {
+    width: 29px;
+    height: 29px;
+  }
+  .hero-copy {
+    padding-top: 42px;
+  }
+  .hero-description {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .eyebrow {
+    font-size: 11px;
+  }
+  .chinese-title .mono {
+    font-size: 9px;
+  }
+  .launch-note {
+    font-size: 12px;
+  }
+  .launch-note .download-note {
+    font-size: 11px;
+  }
+  .launch-button {
+    min-width: 216px;
+    font-size: 18px;
+  }
+  .launch-button small {
+    font-size: 12px;
+  }
+  .launch-actions {
+    gap: 18px;
+  }
+  .feature h2 {
+    font-size: 14px;
+  }
+  .feature p {
+    font-size: 12px;
+  }
+  .feature-number {
+    font-size: 11px;
+  }
+  .home-footer {
+    font-size: 9px;
+  }
+  .home-footer > span:last-child {
+    font-size: 10px;
+  }
+  .touch-hint {
+    margin-top: 18px;
+  }
+  .save-note {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  body[data-mode='game'] .topbar {
+    height: calc(68px + var(--safe-top));
+    padding-left: max(16px, var(--safe-left));
+    padding-right: max(16px, var(--safe-right));
+  }
+  .hud-top {
+    top: calc(84px + var(--safe-top));
+    left: max(16px, var(--safe-left));
+    right: max(16px, var(--safe-right));
+    gap: 10px;
+    grid-template-columns: minmax(0, 1fr) 100px minmax(0, 1fr);
+  }
+  .hud-left,
+  .hud-center,
+  .hud-right {
+    gap: 7px;
+  }
+  .hud-left > strong {
+    font-size: 26px;
+    letter-spacing: -0.065em;
+  }
+  .hud-center {
+    min-width: 0;
+  }
+  .hud-center > strong {
+    font-size: 32px;
+  }
+  .hud-center .hud-label {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .hud-label {
+    font-size: 12px;
+  }
+  .combo {
+    font-size: 12px;
+    max-width: none;
+    white-space: nowrap;
+  }
+  .shield-label {
+    gap: 6px;
+    align-items: flex-end;
+  }
+  .shield-label > span:last-child {
+    font-size: 12px;
+  }
+  .shield-track {
+    width: 90px;
+    max-width: 100%;
+    height: 7px;
+  }
+  .timer-track {
+    width: 96px;
+    height: 3px;
+  }
+  .boss-hud {
+    top: calc(182px + var(--safe-top));
+    width: 60vw;
+  }
+  .boss-hud > div {
+    font-size: 12px;
+  }
+  .hud-bottom {
+    bottom: calc(61px + var(--safe-bottom));
+    left: max(16px, var(--safe-left));
+    right: max(16px, var(--safe-right));
+  }
+  #loadout-icons {
+    max-width: 270px;
+    gap: 5px;
+    min-height: 34px;
+  }
+  .loadout-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 21px;
+    pointer-events: none;
+  }
+  .loadout-icon small {
+    font-size: 12px;
+  }
+  .empty-loadout {
+    font-size: 12px;
+  }
+  .xp-row {
+    bottom: calc(20px + var(--safe-bottom));
+    left: max(16px, var(--safe-left));
+    right: max(16px, var(--safe-right));
+    font-size: 12px;
+    gap: 10px;
+  }
+  .joystick {
+    bottom: calc(125px + var(--safe-bottom));
+    left: max(26px, var(--safe-left));
+    opacity: 0.62;
+  }
+  .joystick.steering {
+    opacity: 0.92;
+  }
+  .touch-dash {
+    bottom: calc(142px + var(--safe-bottom));
+  }
+  .touch-dash:disabled {
+    opacity: 0.45;
+  }
+  .panel-dialog {
+    padding: 30px 24px;
+    max-height: calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px);
+  }
+  .dialog-intro {
+    font-size: 13px;
+  }
+  .manual-list p,
+  .manual-note {
+    font-size: 12px;
+  }
+  .manual-list h3 {
+    font-size: 14px;
+  }
+  .upgrade-dialog {
+    max-height: calc(100dvh - var(--safe-top) - var(--safe-bottom) - 24px);
+    padding: 25px 20px;
+  }
+  .upgrade-card {
+    min-height: 132px;
+    padding: 20px 16px 18px 76px;
+  }
+  .upgrade-card h3 {
+    font-size: 18px;
+    margin: 7px 0;
+  }
+  .upgrade-card p {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .upgrade-card .upgrade-label {
+    font-size: 11px;
+  }
+  .upgrade-card .upgrade-icon {
+    left: 18px;
+    top: 27px;
+    font-size: 32px;
+  }
+  .upgrade-tip {
+    font-size: 12px;
+  }
+  .result-actions .text-button {
+    font-size: 13px;
+  }
+  .result-stats span {
+    font-size: 12px;
+  }
+}
+@media (pointer: coarse) {
+  .loadout-icon {
+    pointer-events: none;
+  }
+  .joystick {
+    bottom: calc(125px + var(--safe-bottom));
+  }
+  .loadout .hud-label {
+    display: none;
+  }
+}
+@media (max-height: 560px) and (orientation: landscape) {
+  body[data-mode='game'] .topbar {
+    height: 50px;
+  }
+  .hud-top {
+    top: 60px;
+    left: 22px;
+    right: 22px;
+  }
+  .hud-left > strong {
+    font-size: 24px;
+  }
+  .hud-center > strong {
+    font-size: 26px;
+  }
+  .hud-left,
+  .hud-right {
+    gap: 3px;
+  }
+  .hud-center {
+    gap: 2px;
+  }
+  .combo {
+    display: none;
+  }
+  .boss-hud {
+    top: 120px;
+  }
+  .joystick {
+    width: 110px;
+    height: 110px;
+    bottom: 78px;
+  }
+  .touch-dash {
+    bottom: 91px;
+    width: 64px;
+    height: 64px;
+  }
+  .hud-bottom {
+    bottom: 48px;
+  }
+  .xp-row {
+    bottom: 15px;
+  }
+  .topbar .brand {
+    font-size: 10px;
+  }
+}
