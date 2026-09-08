@@ -1,0 +1,30 @@
+A LITTLE RESET / 好好收拾 — 0.4.2
+
+Original Season One workbenches and corner-shop diorama geometry, interface,
+procedural wood, enamel, grime and dial textures, animations and synthesized
+audio and the Slow Hours arpeggio created for this game. RESTO is the
+fictional coffee appliance in this scene.
+
+Three.js 0.185.1 — MIT License, Copyright Three.js authors.
+Includes RoundedBoxGeometry and RoomEnvironment from the Three.js examples.
+See licenses/THREE-MIT.txt.
+
+Rapier JavaScript compatibility package 0.12.0 — Apache License 2.0.
+Physics engine by Dimforge and contributors, https://rapier.rs/.
+See licenses/RAPIER-APACHE-2.0.txt.
+
+Cleaning uses raycast surface coordinates and a persistent grime mask.
+Loose accessories use rigid-body physics; their final placement is assisted
+with a short snap animation. Water, lighting and record playback are stylized
+procedural effects rather than a general real-world simulation.
+
+Default background music: 光落在窗台 / After the Light, an original piano
+composition created for Quiet Workshop and rendered from its original score.
+
+Piano samples: Salamander Grand Piano V3 by Alexander Holm (Yamaha C5).
+Licensed under Creative Commons Attribution 3.0 Unported.
+https://github.com/sfzinstruments/SalamanderGrandPiano
+https://creativecommons.org/licenses/by/3.0/
+Samples were resampled, transposed, velocity-layer mixed and processed with
+pedal envelopes, room ambience and mastering. No endorsement is implied.
+Full sample license: licenses/SALAMANDER-CC-BY-3.0.txt.
