@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="theme-color" content="#e4e4d8" />
+    <meta
+      name="description"
+      content="第一季《街角旧店》，九关清洁、整理与修复。让灯光、茶香和唱片重新回到小店。"
+    />
+    <title>好好收拾 · 第一季：街角旧店</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-DkzWbQVf.svg" />
+    <script type="module" crossorigin src="./assets/index-OoSzna4R.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/graphics-D8bD5U1F.js">
+    <link rel="modulepreload" crossorigin href="./assets/physics-ByaTtX8I.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-TLdjsHKV.css">
+  </head>
+  <body data-state="loading">
+    <canvas id="world" aria-label="可清洁的咖啡工作台"></canvas>
+    <div class="left-shade" aria-hidden="true"></div>
+    <header>
+      <a class="brand" href="./"
+        ><span class="brand-mark">◌</span><span>好好收拾<small>第一季 · 街角旧店</small></span></a
+      >
+      <div class="header-actions">
+        <button id="choose-level" title="选择工作台" aria-label="选择工作台">
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="4" width="6" height="6" rx="1" />
+            <rect x="14" y="4" width="6" height="6" rx="1" />
+            <rect x="4" y="14" width="6" height="6" rx="1" />
+            <rect x="14" y="14" width="6" height="6" rx="1" />
+          </svg></button
+        ><button id="view" title="换个角度" aria-label="换个角度">⟳</button
+        ><button id="sound" title="声音" aria-label="关闭声音">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 9h4l5-4v14l-5-4H4zM17 8a7 7 0 0 1 0 8M20 5a11 11 0 0 1 0 14" />
+          </svg></button
+        ><button id="pause" aria-label="暂停" hidden>Ⅱ</button>
+      </div>
+    </header>
+    <section id="intro" class="side-panel">
+      <p class="eyebrow" id="level-label">工作台 01 / 咖啡角</p>
+      <h1 id="intro-title">一杯咖啡<br />之前。</h1>
+      <p class="intro-copy" id="intro-description">
+        擦去积灰，收好器具。<br />让旧物重新变得好用。
+      </p>
+      <div class="step-list" id="intro-steps">
+        <span><i>01</i>擦洗表面</span><span><i>02</i>器具归位</span><span><i>03</i>冲一杯咖啡</span>
+      </div>
+      <button id="start" class="primary" disabled>
+        <span id="start-label">正在打开工作台</span><span>↗</span>
+      </button>
+      <p class="quiet-note">没有倒计时。随时停下，下次继续。</p>
+    </section>
+    <main id="hud" hidden>
+      <section class="side-panel task-panel">
+        <p class="eyebrow" id="stage-label">第一步 / 擦洗表面</p>
+        <h2 id="task-title">一点点，<br />变干净。</h2>
+        <p id="task-description">按住并拖动，擦去表面的污垢。</p>
+        <div class="progress-heading">
+          <span id="progress-name">清洁进度</span
+          ><strong><b id="progress-value">0</b><small>%</small></strong>
+        </div>
+        <div class="progress-track"><i id="progress-fill"></i></div>
+        <div id="surface-list" class="surface-list"></div>
+        <div id="item-list" class="item-list" hidden></div>
+        <button id="recover-loose" class="recover-button" hidden>找回未归位器具</button>
+        <div id="operation-panel" class="operation-panel" hidden>
+          <div id="pour-controls" hidden>
+            <div class="operation-heading">
+              <span>茶碗水位</span><output id="pour-value">0%</output>
+            </div>
+            <div class="water-track"><i id="pour-fill"></i><span>刚好</span></div>
+            <button id="pour-button" class="primary" aria-label="按住注水">
+              按住注水 <span>↓</span>
+            </button>
+            <p class="operation-note">松手暂停，水满自动停下。</p>
+          </div>
+          <div id="dial-controls" hidden>
+            <label for="speed" class="operation-heading"
+              ><span>转速</span><output id="speed-value">25.0 RPM</output></label
+            >
+            <div class="speed-track">
+              <i id="speed-zone"></i
+              ><input
+                id="speed"
+                type="range"
+                min="25"
+                max="45"
+                step="0.1"
+                value="25"
+                aria-label="唱片转速"
+              />
+            </div>
+            <p class="operation-note" id="speed-hint">目标 33⅓ RPM · 调进绿区</p>
+          </div>
+          <div id="task-controls" hidden>
+            <div id="action-steps" class="action-steps" aria-label="修复步骤"></div>
+            <div class="operation-heading">
+              <span id="action-title"></span><output id="action-value"></output>
+            </div>
+            <p id="action-description" class="operation-note"></p>
+            <div id="action-progress" class="water-track"><i id="action-progress-fill"></i></div>
+            <div id="action-range-wrap" class="speed-track" hidden>
+              <i id="action-zone"></i><input id="action-range" type="range" />
+            </div>
+            <button id="action-button" class="primary"></button>
+            <p id="action-brush-note" class="operation-note" hidden>
+              在牌面上按住拖动，慢慢刷出颜色。
+            </p>
+          </div>
+          <button id="brew" class="primary" hidden>冲一杯咖啡 <span>↗</span></button>
+        </div>
+      </section>
+      <div id="object-label" hidden>
+        <strong id="item-name"></strong><span id="item-hint"></span>
+      </div>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <footer class="tool-dock">
+        <div class="tool-icon" aria-hidden="true">▰</div>
+        <div>
+          <strong id="tool-name">湿海绵</strong
+          ><span id="tool-tip">按住拖动，擦过的地方会恢复光泽</span>
+        </div>
+        <span class="saved" id="save-status">进度自动保存</span>
+      </footer>
+    </main>
+    <section id="finished" class="side-panel" hidden>
+      <p class="eyebrow">今天，收拾好了</p>
+      <h2 id="finished-title">干净的桌面。<br />热乎的咖啡。</h2>
+      <p class="intro-copy" id="finished-description">
+        三件器具各就各位，<br />旧咖啡机又开始工作了。
+      </p>
+      <div class="finish-stamp">
+        <span>✓</span>
+        <div><b id="stamp-name">工作台 01</b><small id="collection-count">1 / 9 已完成</small></div>
+      </div>
+      <button id="next-level" class="primary">下一个工作台 <span>↗</span></button>
+      <div class="finish-actions">
+        <button id="compare" class="secondary" aria-pressed="false">看看整理前</button
+        ><button id="finished-shop" class="secondary">看看我的小店</button
+        ><button id="again" class="text-button">再收拾一次</button
+        ><button id="finished-gallery" class="text-button">所有工作台 ↗</button>
+      </div>
+    </section>
+    <section id="shop-panel" class="side-panel" hidden>
+      <p class="eyebrow">第一季 / 街角旧店</p>
+      <h2>一点点，<br />恢复日常。</h2>
+      <p id="shop-description" class="intro-copy"></p>
+      <div id="shop-milestones" class="shop-milestones" aria-label="小店恢复进度"></div>
+      <div id="shop-footer">
+        <button id="begin-opening" class="primary">准备开门 <span>↗</span></button
+        ><button id="shop-gallery" class="secondary">继续收拾</button>
+      </div>
+    </section>
+    <span id="comparison-label" hidden>整理前</span>
+    <div class="scene-caption"><span>RESTO 1986</span><i></i><span>COFFEE CORNER</span></div>
+    <dialog id="pause-dialog">
+      <p class="eyebrow">暂时放下，也没关系</p>
+      <h2>进度留在这里。</h2>
+      <p>关掉页面后，也可以回来接着收拾。</p>
+      <button id="resume" class="primary">继续收拾 <span>↗</span></button
+      ><button id="pause-gallery" class="secondary">换个工作台</button
+      ><button id="restart" class="text-button">重新开始这个工作台</button>
+    </dialog>
+    <dialog id="level-dialog" aria-labelledby="gallery-title">
+      <div class="gallery-heading">
+        <div>
+          <p class="eyebrow">第一季 / 九处小小的日常</p>
+          <h2 id="gallery-title">街角旧店</h2>
+        </div>
+        <button id="close-gallery" class="gallery-close" aria-label="回到当前工作台">×</button>
+      </div>
+      <p class="gallery-copy">收好九处日常，让小店重新开门。</p>
+      <div id="level-cards" class="level-cards"></div>
+      <div class="gallery-footer">
+        <span id="gallery-count">0 / 9 已完成</span
+        ><button id="gallery-shop" class="shop-link">看看我的小店 ↗</button>
+      </div>
+    </dialog>
+    <div id="error" hidden role="alert">
+      <h2>工作台没有打开</h2>
+      <p id="error-message"></p>
+      <button onclick="location.reload()">重新载入</button>
+    </div>
+    <details id="diagnostics" hidden>
+      <summary>运行数据</summary>
+      <pre id="diagnostic-data"></pre>
+    </details>
+  </body>
+</html>
